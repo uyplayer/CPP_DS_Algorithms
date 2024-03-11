@@ -36,7 +36,6 @@ endif ()
 
 # add common/include/lib/third_party
 include_directories(${PROJECT_SOURCE_DIR}/include)
-link_directories(${PROJECT_SOURCE_DIR}/lib)
 link_directories(${PROJECT_SOURCE_DIR}/third_party)
 
 # third party framework
