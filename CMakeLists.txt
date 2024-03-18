@@ -6,7 +6,7 @@ project(CPP_DS_Algorithms)
 
 
 # c++ standard
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
@@ -16,22 +16,27 @@ set(VCPKG_ROOT "$ENV{vcpkg_root_dir}")
 SET(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
 
 
-# check system
+# check system information
 if (WIN32)
-    # find package in windows path
+    # windows
+    # find package in Windows path
     include_directories("${VCPKG_ROOT}/installed/x64-windows/include")
     link_directories("${VCPKG_ROOT}/installed/x64-windows/lib")
     list(APPEND CMAKE_PREFIX_PATH "${VCPKG_ROOT}/installed/x64-windows")
     # msg log
-    message("------------------------System version : Windows-------------------------")
-    message("vcpkg_DIR: ${VCPKG_ROOT}")
-    message("vcpkg.cmake dir: ${CMAKE_TOOLCHAIN_FILE}")
-    message("vcpkg header: ${VCPKG_ROOT}/installed/x64-windows/include")
+    message("------------- System version is Windows -------------")
+    message("-- vcpkg_DIR: ${VCPKG_ROOT}")
+    message("-- vcpkg.cmake dir: ${CMAKE_TOOLCHAIN_FILE}")
+    message("-- vcpkg header: ${VCPKG_ROOT}/installed/x64-windows/include")
 elseif(UNIX)
-    # Linux msg
-    message("------------------------System version : Linux-------------------------")
+    # Linux and macOS msg
+    if(APPLE)
+        message("------------- System version is macOS -------------")
+    else()
+        message("------------- System version is Linux -------------")
+    endif()
+endif()
 
-endif ()
 
 
 # add common/include/lib/third_party
